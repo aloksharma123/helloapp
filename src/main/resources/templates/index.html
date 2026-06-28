@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Spring Boot Demo</title>
+
+    <style>
+
+        body{
+            font-family:Arial;
+            text-align:center;
+            margin-top:100px;
+            background:#f4f4f4;
+        }
+
+        input{
+
+            padding:10px;
+            width:250px;
+        }
+
+        button{
+
+            padding:10px 20px;
+            margin-top:20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>Welcome to Spring Boot</h1>
+
+<form action="/hello">
+
+<input type="text"
+       name="name"
+       placeholder="Enter your name">
+
+<br><br>
+
+<button type="submit">
+
+Say Hello
+
+</button>
+
+</form>
+
+</body>
+
+</html>
