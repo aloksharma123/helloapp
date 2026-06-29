@@ -1,39 +1,42 @@
 package com.example.helloapp;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HelloController {
 
+    // Display the login page
     @GetMapping("/")
-    public String home() {
+    public String showLoginPage() {
         return "index";
     }
 
-    @PostMapping("/greet")
-    public String greet(
-
-            @RequestParam String name,
-            @RequestParam int age,
-            @RequestParam String language,
-
+    // Process the login form
+    @PostMapping("/login")
+    public String login(
+            @RequestParam("username") String username,
+            @RequestParam("password") String password,
             Model model) {
 
-        model.addAttribute("name", name);
-        model.addAttribute("age", age);
-        model.addAttribute("language", language);
+        // Debugging - check what values are received
+        System.out.println("Username: " + username);
+        System.out.println("Password: " + password);
 
-        model.addAttribute("date", LocalDate.now());
-        model.addAttribute("time", LocalTime.now());
+        // Check credentials
+        if ("admin".equals(username) && "12345".equals(password)) {
 
-        return "hello";
+            model.addAttribute("username", username);
+
+            return "welcome";
+        }
+
+        // Invalid login
+        model.addAttribute("error", "Invalid Username or Password");
+
+        return "index";
     }
-
 }

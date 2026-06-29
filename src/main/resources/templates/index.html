@@ -1,25 +1,97 @@
-<form action="/greet" method="post">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-    <label>Name</label><br>
-    <input type="text" name="name" required><br><br>
+<head>
 
-    <label>Age</label><br>
-    <input type="number" name="age" required><br><br>
+<title>Login</title>
 
-    <label>Favorite Language</label><br>
+<style>
 
-    <select name="language">
+body{
 
-        <option>Java</option>
-        <option>Python</option>
-        <option>C++</option>
+    font-family:Arial;
+    background:#f4f4f4;
 
-    </select>
+}
 
-    <br><br>
+.container{
 
-    <button type="submit">
-        Generate Greeting
-    </button>
+    width:350px;
+
+    margin:100px auto;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:10px;
+
+    box-shadow:0px 0px 10px gray;
+
+}
+
+input{
+
+    width:100%;
+
+    padding:10px;
+
+    margin-top:10px;
+
+}
+
+button{
+
+    width:100%;
+
+    margin-top:20px;
+
+    padding:10px;
+
+}
+
+.error{
+
+    color:red;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Login</h2>
+
+<form action="/login" method="post">
+
+<input
+type="text"
+name="username"
+placeholder="Username"
+required>
+
+<input
+type="password"
+name="password"
+placeholder="Password"
+required>
+
+<button>
+
+Login
+
+</button>
 
 </form>
+
+<p class="error" th:text="${error}"></p>
+
+</div>
+
+</body>
+
+</html>
