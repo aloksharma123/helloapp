@@ -5,36 +5,35 @@ import java.time.LocalTime;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HelloController {
 
     @GetMapping("/")
     public String home() {
-
         return "index";
-
     }
 
-    @GetMapping("/hello")
-    public String hello(
+    @PostMapping("/greet")
+    public String greet(
 
-            @RequestParam(defaultValue="World") String name,
+            @RequestParam String name,
+            @RequestParam int age,
+            @RequestParam String language,
 
-            Model model
+            Model model) {
 
-    ) {
+        model.addAttribute("name", name);
+        model.addAttribute("age", age);
+        model.addAttribute("language", language);
 
-        model.addAttribute("name",name);
-
-        model.addAttribute("date",LocalDate.now());
-
-        model.addAttribute("time",LocalTime.now());
+        model.addAttribute("date", LocalDate.now());
+        model.addAttribute("time", LocalTime.now());
 
         return "hello";
-
     }
 
 }

@@ -1,54 +1,25 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<form action="/greet" method="post">
 
-<head>
-    <title>Spring Boot Demo</title>
+    <label>Name</label><br>
+    <input type="text" name="name" required><br><br>
 
-    <style>
+    <label>Age</label><br>
+    <input type="number" name="age" required><br><br>
 
-        body{
-            font-family:Arial;
-            text-align:center;
-            margin-top:100px;
-            background:#f4f4f4;
-        }
+    <label>Favorite Language</label><br>
 
-        input{
+    <select name="language">
 
-            padding:10px;
-            width:250px;
-        }
+        <option>Java</option>
+        <option>Python</option>
+        <option>C++</option>
 
-        button{
+    </select>
 
-            padding:10px 20px;
-            margin-top:20px;
-        }
+    <br><br>
 
-    </style>
-
-</head>
-
-<body>
-
-<h1>Welcome to Spring Boot</h1>
-
-<form action="/hello">
-
-<input type="text"
-       name="name"
-       placeholder="Enter your name">
-
-<br><br>
-
-<button type="submit">
-
-Say Hello
-
-</button>
+    <button type="submit">
+        Generate Greeting
+    </button>
 
 </form>
-
-</body>
-
-</html>
