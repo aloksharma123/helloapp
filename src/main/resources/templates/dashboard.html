@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dashboard</title>
+</head>
+
+<body>
+
+<h1>Welcome 👋</h1>
+
+<!-- 🔴 SIMPLE TIMER -->
+<h2>Time left: <span id="timer">60</span></h2>
+
+<script>
+    console.log("Script loaded");
+
+    let timeLeft = 60;
+
+    const timer = document.getElementById("timer");
+
+    setInterval(() => {
+        timeLeft--;
+        timer.innerText = timeLeft;
+    }, 1000);
+</script>
+
+</body>
+</html>

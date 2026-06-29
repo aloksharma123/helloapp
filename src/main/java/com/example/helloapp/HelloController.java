@@ -10,11 +10,7 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class HelloController {
 
-    // Display the login page
-    // @GetMapping("/")
-    // public String showLoginPage() {
-    //     return "index";
-    // }
+     
     @GetMapping("/welcome")
 public String welcome(HttpSession session, Model model) {
 
@@ -35,31 +31,7 @@ public String logout(HttpSession session) {
 
     return "redirect:/";
 }
-
-    // Process the login form
-    // @PostMapping("/login")
-    // public String login(
-    //         @RequestParam("username") String username,
-    //         @RequestParam("password") String password,
-    //         Model model) {
-
-    //     // Debugging - check what values are received
-    //     System.out.println("Username: " + username);
-    //     System.out.println("Password: " + password);
-
-    //     // Check credentials
-    //     if ("admin".equals(username) && "12345".equals(password)) {
-
-    //         model.addAttribute("username", username);
-
-    //         return "welcome";
-    //     }
-
-    //     // Invalid login
-    //     model.addAttribute("error", "Invalid Username or Password");
-
-    //     return "index";
-    // }
+ 
     @PostMapping("/login")
 public String login(
         @RequestParam("username") String username,
@@ -70,11 +42,24 @@ public String login(
     if ("admin".equals(username) && "12345".equals(password)) {
 
         session.setAttribute("user", username);
-
+        session.setMaxInactiveInterval(60);
         return "redirect:/welcome";
     }
 
     model.addAttribute("error", "Invalid Username or Password");
     return "index";
+}
+@GetMapping("/dashboard")
+public String dashboard(HttpSession session, Model model) {
+
+    String user = (String) session.getAttribute("user");
+
+    if (user == null) {
+        return "redirect:/";
+    }
+
+    model.addAttribute("username", user);
+
+    return "dashboard";
 }
 }
